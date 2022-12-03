@@ -1,4 +1,5 @@
 FROM alpine:latest
+LABEL maintainer=tonyduckles
 
 RUN apk add --no-cache nginx gettext nginx-mod-http-brotli
 
