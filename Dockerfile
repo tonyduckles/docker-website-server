@@ -6,6 +6,9 @@ ENV	PUID=1000
 RUN apk add --no-cache nginx gettext nginx-mod-http-brotli
 
 RUN set -x \
+# Forward access and error logs to docker log collector
+	&& ln -sf /dev/stdout /var/log/nginx/access.log \
+	&& ln -sf /dev/stderr /var/log/nginx/error.log \
 # Create /run/nginx directory, for nginx's default PID location
 	&& mkdir -p /run/nginx \
 # Create empty nginx extra.conf file
