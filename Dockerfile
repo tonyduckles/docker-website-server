@@ -23,4 +23,8 @@ RUN set -x \
 
 EXPOSE 80
 
+HEALTHCHECK CMD nginx -t &>/dev/null \
+	&& wget -O - http://localhost:80/.ping &>/dev/null \
+	|| exit 1
+
 CMD ["/docker-entrypoint.sh"]
